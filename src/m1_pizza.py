@@ -30,8 +30,8 @@ def main():
     # run_test_generate_points_on_circle()
     # run_test_draw_points_on_circle()
     # run_test_pizza()
-    run_test_polygon()
-    # run_test_fancy_polygon()
+    # run_test_polygon()
+    run_test_fancy_polygon()
 
 
 def run_test_generate_points_on_circle():
@@ -494,6 +494,13 @@ def run_test_fancy_polygon():
     #   For all these, filling the circles with one color and using
     #   a contrasting color for the lines makes them especially pretty.
     # ------------------------------------------------------------------
+    title = 'FANCY POLYGON test 4:'
+    window = rg.RoseWindow(480, 350, title)
+
+    circle = rg.Circle(rg.Point(240, 165), 150)
+    circle.fill_color = 'blue'
+    fancy_polygon(window, circle, 30, 16, 'purple', 3)
+    window.close_on_mouse_click()
 
 
 def fancy_polygon(window, circle, number_of_lines, hops_to_next_point, color, thickness):
@@ -567,6 +574,16 @@ def fancy_polygon(window, circle, number_of_lines, hops_to_next_point, color, th
     #       appropriately.  ASK YOUR INSTRUCTOR FOR AN EXAMPLE.
     ####################################################################
     # ------------------------------------------------------------------
+    circle.attach_to(window)
+    listofpoints = generate_points_on_circle(circle, number_of_lines)
+    for k in range(len(listofpoints)):
+        newline = rg.Line(listofpoints[k-1-hops_to_next_point], listofpoints[
+            k-1])
+        newline.arrow = 'last'
+        newline.color = color
+        newline.thickness = thickness
+        newline.attach_to(window)
+        window.render()
 
 
 # ----------------------------------------------------------------------
